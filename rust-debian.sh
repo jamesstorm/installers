@@ -5,3 +5,4 @@ curl https://sh.rustup.rs >./installrust.sh
 chmod +x installrust.sh
 ./installrust.sh -y
 rm installrust.sh
+echo "PATH=${PATH}:${HOME}/.cargo/bin" >>${HOME}/.zshrc
