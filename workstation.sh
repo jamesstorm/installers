@@ -1,7 +1,7 @@
 !#/bin/sh
 
 user=james
-password=james
+
 
 #COPY appdata/setup /setup
 apt-get update
