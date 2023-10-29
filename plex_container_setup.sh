@@ -13,5 +13,8 @@ groupadd --gid 3000 mediausers
 useradd --uid 3000 -m mediauser
 
 usermod -aG mediausers mediauser
-usermod -aG sudo mediauser
+usermod -aG sudo mediausers
+echo "Enter a password for mediauser"
 passwd mediauser
+mkdir /mnt/mediashare
+echo "192.168.5.201:/mnt/mr_pool/media /mnt/mediashare nfs defaults 0 0" >>/etc/fstab
