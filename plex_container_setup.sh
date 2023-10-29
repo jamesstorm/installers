@@ -8,7 +8,7 @@ pam-auth-update >deselect "Register user sessions in the systemd control group h
 # fix ping cap_net thing
 sudo setcap cap_net_raw+ep /bin/ping
 
-apt install tmux zsh sudo python3-pip ansible-core gh -y
+apt install tmux zsh sudo python3-pip ansible-core gh nfs-common -y
 groupadd --gid 3000 mediausers
 useradd --uid 3000 -m mediauser
 
