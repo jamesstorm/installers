@@ -5,7 +5,8 @@
 systemctl mask systemd-logind
 pam-auth-update >deselect "Register user sessions in the systemd control group hierarchy"
 
-# requires git
+# fix ping cap_net thing
+sudo setcap cap_net_raw+ep /bin/ping
 
 apt install tmux zsh sudo python3-pip ansible-core gh -y
 groupadd --gid 3000 mediausers
