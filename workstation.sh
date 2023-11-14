@@ -65,9 +65,9 @@ ln -s /squashfs-root/AppRun /usr/bin/nvim
 # INSTALL PACKER FOR NEOVIM
 git clone --depth 1 https://github.com/wbthomason/packer.nvim /home/${user}/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-#curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-#dpkg -i ripgrep_13.0.0_amd64.deb
-#rm ripgrep_13.0.0_amd64.deb
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+dpkg -i ripgrep_13.0.0_amd64.deb
+rm ripgrep_13.0.0_amd64.deb
 
 #mkdir /home/${user}/.ssh
 
