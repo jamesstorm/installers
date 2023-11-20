@@ -102,3 +102,5 @@ echo "PATH=/squashfs-root/usr/bin:/home/${user}/.local/bin:$PATH" >>/home/${user
 
 # Set the timezone
 ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
+
+chsh --shell /bin/zsh james
