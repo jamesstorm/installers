@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/bin/sh
 
 # first... make sure the user is in sudoers
 # su -
@@ -59,8 +59,8 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
 chmod u+x nvim.appimage
 ./nvim.appimage --appimage-extract
-mv squashfs-root /
-ln -s /squashfs-root/AppRun /usr/bin/nvim
+mv squashfs-root /nvim-squashfs-root
+ln -s /nvim-squashfs-root/AppRun /usr/bin/nvim
 rm nvim.appimage
 # INSTALL PACKER FOR NEOVIM
 git clone --depth 1 https://github.com/wbthomason/packer.nvim /home/${user}/.local/share/nvim/site/pack/packer/start/packer.nvim
