@@ -10,12 +10,13 @@
 # https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.tar.xz
 
 user=james
+fonturl="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/L/Regular/MesloLGLNerdFontMono-Regular.ttf"
 
-#COPY appdata/setup /setup
 apt-get update
 apt-get upgrade -y
 
 apt-get install \
+	nala \
 	zsh \
 	wget \
 	sudo \
@@ -50,10 +51,6 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 	echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
 	sudo apt update &&
 	sudo apt install gh -y
-#gh auth login
-#gh repo clone jamesstorm/prime /home/$USERNAME/prime
-#cp -R /home/$USERNAME/prime/.aws /home/$USERNAME
-#sudo cp -R /home/$USERNAME/.aws /root/
 
 # NEOVIM stable
 wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
@@ -64,6 +61,7 @@ ln -s /nvim-squashfs-root/AppRun /usr/bin/nvim
 rm nvim.appimage
 # INSTALL PACKER FOR NEOVIM
 git clone --depth 1 https://github.com/wbthomason/packer.nvim /home/${user}/.local/share/nvim/site/pack/packer/start/packer.nvim
+./lazy.sh
 
 curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
 dpkg -i ripgrep_13.0.0_amd64.deb
@@ -104,3 +102,9 @@ echo "PATH=/squashfs-root/usr/bin:/home/${user}/.local/bin:$PATH" >>/home/${user
 ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
 
 chsh --shell /bin/zsh james
+
+# Font and Gnome Terminal settings
+#
+
+wget -P /home/${user}/.local/share/fonts/ ${fonturl}
+dconf load /org/gnome/terminal/ </home/${user}/dotfiles/gnome_terminal_settings_backup.txt
