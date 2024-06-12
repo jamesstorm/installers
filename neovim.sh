@@ -1,14 +1,9 @@
 #!/bin/bash
+echo "Downloading nvim..."
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 chmod u+x nvim.appimage
 
-#./nvim.appimage
-
-
-./nvim.appimage --appimage-extract
-./squashfs-root/AppRun --version
-
-# Optional: exposing nvim globally.
-sudo mv squashfs-root /
-sudo ln -s /squashfs-root/AppRun /usr/bin/nvim
-nvim
+sudo rm /usr/bin/nvim
+sudo cp nvim.appimage /usr/bin/nvim
+sudo chmod +x /usr/bin/nvim
+rm nvim.appimage
