@@ -36,6 +36,14 @@ sudo pacman -S --noconfirm --needed  neovim
 sudo pacman -S --noconfirm --needed  ansible
 sudo pacman -S --needed --noconfirm base-devel 
 
+
+
+# TMUX PACKAE MANAGER
+git clone https://github.com/tmux-plugins/tpm /home/$user/.tmux/plugins/tpm
+
+# ALACRITTY
+./alacritty.sh
+
 # NEOVIM
 git clone https://github.com/NvChad/starter /home/${user}/.config/nvim && nvim
 
@@ -60,6 +68,7 @@ ln -s /home/${user}/dotfiles/.tmux.conf /home/${user}/.tmux.conf
 ln -s /home/${user}/dotfiles/.gitconfig /home/${user}/.gitconfig
 mkdir /home/${user}/.config/ohmyposh
 ln -s /home/${user}/dotfiles/omp.toml /home/${user}/.config/ohmyposh/
+
 
 # MAKE SURE THE USER OWNS ALL THE THINGS IN THEIR HOME
 sudo hown -R ${user}:${user} /home/${user}

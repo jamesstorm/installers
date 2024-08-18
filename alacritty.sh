@@ -1,16 +1,19 @@
 #!/bin/bash
-source functions.sh
+source ~/installers/functions.sh
 
 
 main() {
   install_app "alacritty" 
 
-  if [ -e ~/.config/alacritty.toml ]; then
-    echo "found config to delete"
-    rm  ~/.config/alacritty.toml
+  if [ -d ~/.config/alacritty ]; then
+    rm  rf ~/.config/alacritty
   fi
 
-  ln -s ~/dotfiles/alacritty.toml ~/.config/alacritty.toml 
+  mkdir ~/.config/alacritty
+  ln -s ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+  mkdir -p ~/.config/alacritty/themes
+  git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+
 }
 
 
