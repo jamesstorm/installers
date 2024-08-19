@@ -102,6 +102,7 @@ ln -s /home/${user}/dotfiles/.gitconfig /home/${user}/.gitconfig
 mkdir -p /home/${user}/.config/ohmyposh
 ln -s /home/${user}/dotfiles/omp.toml /home/${user}/.config/ohmyposh/
 ln -s /home/${user}/dotfiles/bat-config /home/${user}/.config/bat/config
+ln -s /home/${user}/dotfiles/colorscheme.lua /home/${user}/.config/nvim/lua/plugins/
 
 # MAKE SURE THE USER OWNS ALL THE THINGS IN THEIR HOME
 echo "===== chmod all the user's things"
