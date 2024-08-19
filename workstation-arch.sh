@@ -31,6 +31,7 @@ sudo pacman -S --noconfirm --needed base-devel
 sudo pacman -S --noconfirm --needed bat
 sudo pacman -S --noconfirm --needed openssh 
 sudo pacman -S --noconfirm --needed obsidian 
+sudo pacman -S --noconfirm --needed zsh-syntax-highlighting
 
 # SSH - bounce it to get it going
 sudo systemctl restart sshd.service 
@@ -55,6 +56,10 @@ git clone https://github.com/tmux-plugins/tpm /home/$user/.tmux/plugins/tpm
 # ALACRITTY
 echo "===== alacritty"
 ./alacritty.sh
+
+# ZSH SYNTAX HIGHTLIGHTING
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 
 # NVCHAD
 echo "===== nvchad"
@@ -113,11 +118,12 @@ sudo chown -R ${user}:${user} /home/${user}
 echo "===== setting user shell to zsh"
 sudo chsh --shell /usr/bin/zsh ${user}
 
-# Font and Gnome Terminal settings
-echo "font and gnome settings"
+# Font and Gnome settings
+echo "===== font and gnome settings"
 sudo wget -P /usr/local/share/fonts/ ${fonturl}
 rm -rf /home/${user}/.config/autostart
 ln -s /home/${user}/dotfiles/autostart /home/${user}/.config/autostart
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
 # mount shares
 echo "===== mounting shares from nas"
