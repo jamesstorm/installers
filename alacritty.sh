@@ -11,8 +11,6 @@ main() {
 
   mkdir -p ~/.config/alacritty
   ln -s ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
-  mkdir -p ~/.config/alacritty/themes
-  git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
 
 }
 

@@ -61,6 +61,20 @@ echo "===== nvchad"
 rm -rf /home/${user}/.config/nvim
 git clone https://github.com/NvChad/starter /home/${user}/.config/nvim 
 
+# TOKYONIGHT
+git clone https://github.com/folke/tokyonight.nvim.git
+
+# bat 
+# already installed above..
+#
+mkdir /home/${user}/.config/bat/themes
+ln /home/${user}/tokyonight.nvim/extras/sublime/tokyonight_moon.tmTheme /home/${user}/.config/bat/theme/
+ln /home/${user}/tokyonight.nvim/extras/sublime/tokyonight_day.tmTheme /home/${user}/.config/bat/theme/
+ln /home/${user}/tokyonight.nvim/extras/sublime/tokyonight_night.tmTheme /home/${user}/.config/bat/theme/
+ln /home/${user}/tokyonight.nvim/extras/sublime/tokyonight_storm.tmTheme /home/${user}/.config/bat/theme/
+bat cache --build
+
+
 # OHMYZSH
 echo "===== ohmyzsh"
 rm -rf /home/${user}/.oh-my-zsh
@@ -75,12 +89,14 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 echo "===== my dotfiles"
 rm -rf /home/${user}/dotfiles 
 git clone https://github.com/jamesstorm/dotfiles /home/${user}/dotfiles
-rm -rf /home/${user}/.zshrc /home/${user}/.tmux.conf /home/${user}/.gitconfig /home/${user}/.config/ohmyposh/omp.toml
+
+rm -rf /home/${user}/bat/config /home/${user}/.zshrc /home/${user}/.tmux.conf /home/${user}/.gitconfig /home/${user}/.config/ohmyposh/omp.toml
 ln -s /home/${user}/dotfiles/.zshrc-arch /home/${user}/.zshrc #### NOTE THAT THIS POINTS AT THE ARCH VERSION
 ln -s /home/${user}/dotfiles/.tmux.conf /home/${user}/.tmux.conf
 ln -s /home/${user}/dotfiles/.gitconfig /home/${user}/.gitconfig
 mkdir -p /home/${user}/.config/ohmyposh
 ln -s /home/${user}/dotfiles/omp.toml /home/${user}/.config/ohmyposh/
+ln -s /home/${user}/dotfiles/bat-config /home/${user}/.config/bat/config
 
 # MAKE SURE THE USER OWNS ALL THE THINGS IN THEIR HOME
 echo "===== chmod all the user's things"
