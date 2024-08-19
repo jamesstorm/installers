@@ -7,8 +7,7 @@
 
 
 user=james
-fonturl="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/meslo/l/regular/meslolglnerdfontmono-regular.ttf"
-
+fonturl="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/L/Regular/MesloLGLNerdFontMono-Regular.ttf"
 sudo pacman -Syu
 sudo pacman -S --noconfirm --needed  yay
 sudo pacman -S --noconfirm --needed  man
@@ -34,33 +33,40 @@ sudo pacman -S --noconfirm --needed  github-cli
 sudo pacman -S --noconfirm --needed  ripgrep
 sudo pacman -S --noconfirm --needed  neovim
 sudo pacman -S --noconfirm --needed  ansible
-sudo pacman -S --needed --noconfirm base-devel 
+sudo pacman -S --noconfirm --needed  base-devel 
 
 
 
 # TMUX PACKAE MANAGER
+echo "===== tmux package manager"
 git clone https://github.com/tmux-plugins/tpm /home/$user/.tmux/plugins/tpm
 
 # ALACRITTY
+echo "===== alacritty"
 ./alacritty.sh
 
-# NEOVIM
-git clone https://github.com/NvChad/starter /home/${user}/.config/nvim && nvim
+# NVCHAD
+echo "===== nvchad"
+git clone https://github.com/NvChad/starter /home/${user}/.config/nvim 
 
 # YAY
-git clone https://aur.archlinux.org/yay.git /home/${user}/
-cd yay
+echo "===== yay"
+git clone https://aur.archlinux.org/yay.git /home/${user}/yay
+cd /home/${user}/yay
 makepkg -si --noconfirm
-cd ~
+cd - 
 
 # OHMYZSH
+echo "===== ohmyzsh"
 git clone https://github.com/ohmyzsh/ohmyzsh.git /home/${user}/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions /home/${user}/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # OHMYPOSH
+echo "===== oh my posh"
 curl -s https://ohmyposh.dev/install.sh | bash -s
 
 # MY DOTFILES
+echo "===== my dotfiles"
 git clone https://github.com/jamesstorm/dotfiles /home/${user}/dotfiles
 rm -rf /home/${user}/.zshrc /home/${user}/.tmux.conf /home/${user}/.gitconfig /home/${user}/.config/ohmyposh/omp.toml
 ln -s /home/${user}/dotfiles/.zshrc-arch /home/${user}/.zshrc #### NOTE THAT THIS POINTS AT THE ARCH VERSION
@@ -71,7 +77,7 @@ ln -s /home/${user}/dotfiles/omp.toml /home/${user}/.config/ohmyposh/
 
 
 # MAKE SURE THE USER OWNS ALL THE THINGS IN THEIR HOME
-sudo hown -R ${user}:${user} /home/${user}
+sudo chown -R ${user}:${user} /home/${user}
 
 
 # Set the locale because ansible-vault will not work without it.
@@ -84,7 +90,7 @@ echo "PATH=/squashfs-root/usr/bin:/home/${user}/.local/bin:$PATH" >>/home/${user
 sudo ln -sf /usr/share/zoneinfo/America/Toronto /etc/localtime
 
 # Make sure the user has zsh as the default shell
-sudo chsh --shell /bin/zsh ${user}
+sudo chsh --shell /usr/bin/zsh ${user}
 
 # Font and Gnome Terminal settings
 sudo wget -P /usr/local/share/fonts/ ${fonturl}
