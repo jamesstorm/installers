@@ -3,7 +3,7 @@
 user=james
 fonturl="https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Meslo/L/Regular/MesloLGLNerdFontMono-Regular.ttf"
 
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed man
 sudo pacman -S --noconfirm --needed nfs-utils
 sudo pacman -S --noconfirm --needed zsh
@@ -31,7 +31,6 @@ sudo pacman -S --noconfirm --needed base-devel
 sudo pacman -S --noconfirm --needed bat
 sudo pacman -S --noconfirm --needed openssh 
 sudo pacman -S --noconfirm --needed obsidian 
-sudo pacman -S --noconfirm --needed zsh-syntax-highlighting
 
 # SSH - bounce it to get it going
 sudo systemctl restart sshd.service 
