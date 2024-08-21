@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # install all the things I like in my zsh environment
 source $HOME/installers/functions.sh
 DEBUG=0
