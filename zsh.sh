@@ -1,13 +1,10 @@
 # install all the things I like in my zsh environment
-
+source $HOME/installers/functions.sh
 DEBUG=0
 
 OMP_INSTALL_DIR=$HOME/.local/bin
 OMP_CONFIG_DIR=$XDG_CONFIG_HOME/ohmyposh
 
-function debug {
-  [ $DEBUG -eq -0 ] && echo $1
-}
 
 
 function main {
@@ -16,7 +13,6 @@ function main {
     exit 1
   fi
 
- debug "hello"
 
   # alias my system-wide zshenv
   [ -d /etc/zsh ] && sudo rm -rf /etc/zsh 
@@ -59,6 +55,21 @@ function main {
   [ -d $ZDOTDIR/plugins/zsh-syntax-highlighting ] && rm -rf $ZDOTDIR/plugins/zsh-syntax-highlighting
   mkdir -p $ZDOTDIR/plugins/zsh-syntax-highlighting
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/plugins/zsh-syntax-highlighting
+
+
+  ## TMUX PACKAGE MANAGER
+  debug "===== tmux package manager"
+  
+  [ -d $HOME/.tmux ] && rm -rf $HOME/.tmux
+  mkdir -p $HOME/.tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
+
+  ## TMUX CONFIG
+  [ -f $HOME/.tmux.conf ] && rm -rf $HOME/.tmux.conf
+  ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
+
+
 }
 
 

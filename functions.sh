@@ -1,15 +1,14 @@
-
 install_app() {
 
   if $(is_installed $1); then
     echo "$1 is already installed"
   else
     echo "install_app installing $1"
-    if [ -x /usr/bin/pacman ] ; then
+    if [ -x /usr/bin/pacman ]; then
       sudo pacman -S $1
     elif [[ -x /usr/bin/apt ]]; then
-      sudo apt install $1 -y 
-    fi  
+      sudo apt install $1 -y
+    fi
   fi
 
 }
@@ -20,4 +19,8 @@ is_installed() {
   else
     return 1 # false
   fi
+}
+
+function debug {
+  [ $DEBUG -eq -0 ] && echo $1
 }
