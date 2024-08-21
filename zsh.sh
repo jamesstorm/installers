@@ -1,41 +1,71 @@
 # install all the things I like in my zsh environment
 
+DEBUG=0
 
-if [ "$(id -u)" -eq 0 ]; then # root user uid is 0
-  echo "Do not run as root."
-  exit 1
-fi
+OMP_INSTALL_DIR=$HOME/.local/bin
+OMP_CONFIG_DIR=$XDG_CONFIG_HOME/ohmyposh
 
-
-
-# alias my system-wide zshenv
-[ -d /etc/zsh ] && sudo rm -rf /etc/zsh 
-sudo mkdir -p /etc/zsh
-sudo ln -s /home/${USER}/dotfiles/zsh/zshenv /etc/zsh/zshenv
+function debug {
+  [ $DEBUG -eq -0 ] && echo $1
+}
 
 
+function main {
+  if [ "$(id -u)" -eq 0 ]; then # root user uid is 0
+    echo "Do not run as root."
+    exit 1
+  fi
 
-# Alias my dotfiles
-[ -d $ZDOTDIR ] && rm -rf $ZDOTDIR #purge existing if exists
-mkdir -p $ZDOTDIR/plugins
-ln -s $HOME/dotfiles/zsh/.zshrc $ZDOTDIR/.zshrc
-ln -s $HOME/dotfiles/zsh/options.zsh $ZDOTDIR/options.zsh
-ln -s $HOME/dotfiles/zsh/aliases.zsh $ZDOTDIR/aliases.zsh
+ debug "hello"
 
-# PLUGINS
+  # alias my system-wide zshenv
+  [ -d /etc/zsh ] && sudo rm -rf /etc/zsh 
+  sudo mkdir -p /etc/zsh
+  sudo ln -s /home/${USER}/dotfiles/zsh/zshenv /etc/zsh/zshenv
 
-## OHMYPOSH
-curl -s https://ohmyposh.dev/install.sh | bash -s
 
-## ZSH_AUTOSUGGESTIONS
-[ -d $ZDOTDIR/plugins/zsh-autosuggestions ] && rm -rf $ZDOTDIR/plugins/zsh-autosuggestions
-mkdir -p $ZDOTDIR/plugins/zsh-autosuggestions 
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZDOTDIR/plugins/zsh-autosuggestions
 
-## ZSH SYNTAX highlighting
-[ -d $ZDOTDIR/plugins/zsh-syntax-highlighting ] && rm -rf $ZDOTDIR/plugins/zsh-syntax-highlighting
-mkdir -p $ZDOTDIR/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/plugins/zsh-syntax-highlighting
+  # Alias my dotfiles
+  [ -d $ZDOTDIR ] && rm -rf $ZDOTDIR #purge existing if exists
+  mkdir -p $ZDOTDIR/plugins
+  ln -s $HOME/dotfiles/zsh/.zshrc $ZDOTDIR/.zshrc
+  ln -s $HOME/dotfiles/zsh/options.zsh $ZDOTDIR/options.zsh
+  ln -s $HOME/dotfiles/zsh/aliases.zsh $ZDOTDIR/aliases.zsh
+
+  # PLUGINS
+
+  ## OHMYPOSH
+
+  #### INSTALL
+  debug "starting omp install"
+  debug "installing to: ${OMP_INSTALL_DIR}"
+  [ -d $OMP_INSTALL_DIR ] && rm -rf $OMP_INSTALL_DIR
+  mkdir -p $OMP_INSTALL_DIR
+  ls -al $OMP_INSTALL_DIR
+  export PATH=$PATH:$OMP_INSTALL_DIR
+  curl -s https://ohmyposh.dev/install.sh | bash -s -- -d $OMP_INSTALL_DIR
+
+  #### CONFIG
+  [ -d $OMP_CONFIG_DIR ] && rm -rf $OMP_CONFIG_DIR
+  mkdir -p $OMP_CONFIG_DIR
+  ln -s $HOME/dotfiles/omp.toml $OMP_CONFIG_DIR/omp.toml
+
+  ## ZSH_AUTOSUGGESTIONS
+  [ -d $ZDOTDIR/plugins/zsh-autosuggestions ] && rm -rf $ZDOTDIR/plugins/zsh-autosuggestions
+  mkdir -p $ZDOTDIR/plugins/zsh-autosuggestions 
+  git clone https://github.com/zsh-users/zsh-autosuggestions $ZDOTDIR/plugins/zsh-autosuggestions
+
+  ## ZSH SYNTAX highlighting
+  [ -d $ZDOTDIR/plugins/zsh-syntax-highlighting ] && rm -rf $ZDOTDIR/plugins/zsh-syntax-highlighting
+  mkdir -p $ZDOTDIR/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/plugins/zsh-syntax-highlighting
+}
+
+
+
+
+
+main
 
 
 
