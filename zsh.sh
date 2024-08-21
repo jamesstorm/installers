@@ -13,12 +13,9 @@ function main {
     exit 1
   fi
 
-  # alias my system-wide zshenv
-  [ -d /etc/zsh ] && sudo rm -rf /etc/zsh
-  sudo mkdir -p /etc/zsh
-  sudo ln -s $HOME/dotfiles/zsh/zshenv /etc/zsh/zshenv
-
   # Alias my dotfiles
+  [ -f $HOME/.zshenv ] && rm $HOME/.zshenv
+  ln -s $HOME/dotfiles/zsh/zshenv $HOME/.zshenv
   [ -d $ZDOTDIR ] && rm -rf $ZDOTDIR #purge existing if exists
   mkdir -p $ZDOTDIR/plugins
   ln -s $HOME/dotfiles/zsh/.zshrc $ZDOTDIR/.zshrc
