@@ -1,6 +1,19 @@
 #!/bin/bash
 
 # install all the things I like in my zsh environment
+
+[ -f $HOME/.zshenv ] && rm $HOME/.zshenv
+ln -s $HOME/dotfiles/zsh/zshenv $HOME/.zshenv
+
+#if [ -z $ZDOTDIR ]; then
+#  echo "ZDOTDIR is zero. Setting..."
+source $HOME/.zshenv
+#fi
+
+#echo "ZDOTDIR is now: $ZDOTDIR"
+#echo "XDG_CONFIG_HOME is now: $XDG_CONFIG_HOME"
+#exit 1
+
 source $HOME/installers/functions.sh
 DEBUG=0
 
@@ -14,8 +27,6 @@ function main {
   fi
 
   # Alias my dotfiles
-  [ -f $HOME/.zshenv ] && rm $HOME/.zshenv
-  ln -s $HOME/dotfiles/zsh/zshenv $HOME/.zshenv
   [ -d $ZDOTDIR ] && rm -rf $ZDOTDIR #purge existing if exists
   mkdir -p $ZDOTDIR/plugins
   ln -s $HOME/dotfiles/zsh/.zshrc $ZDOTDIR/.zshrc
