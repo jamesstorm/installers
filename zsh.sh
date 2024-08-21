@@ -7,21 +7,16 @@ DEBUG=0
 OMP_INSTALL_DIR=$HOME/.local/bin
 OMP_CONFIG_DIR=$XDG_CONFIG_HOME/ohmyposh
 
-
-
 function main {
   if [ "$(id -u)" -eq 0 ]; then # root user uid is 0
     echo "Do not run as root."
     exit 1
   fi
 
-
   # alias my system-wide zshenv
-  [ -d /etc/zsh ] && sudo rm -rf /etc/zsh 
+  [ -d /etc/zsh ] && sudo rm -rf /etc/zsh
   sudo mkdir -p /etc/zsh
-  sudo ln -s /home/${USER}/dotfiles/zsh/zshenv /etc/zsh/zshenv
-
-
+  sudo ln -s $HOME/dotfiles/zsh/zshenv /etc/zsh/zshenv
 
   # Alias my dotfiles
   [ -d $ZDOTDIR ] && rm -rf $ZDOTDIR #purge existing if exists
@@ -50,7 +45,7 @@ function main {
 
   ## ZSH_AUTOSUGGESTIONS
   [ -d $ZDOTDIR/plugins/zsh-autosuggestions ] && rm -rf $ZDOTDIR/plugins/zsh-autosuggestions
-  mkdir -p $ZDOTDIR/plugins/zsh-autosuggestions 
+  mkdir -p $ZDOTDIR/plugins/zsh-autosuggestions
   git clone https://github.com/zsh-users/zsh-autosuggestions $ZDOTDIR/plugins/zsh-autosuggestions
 
   ## ZSH SYNTAX highlighting
@@ -58,29 +53,17 @@ function main {
   mkdir -p $ZDOTDIR/plugins/zsh-syntax-highlighting
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/plugins/zsh-syntax-highlighting
 
-
   ## TMUX PACKAGE MANAGER
   debug "===== tmux package manager"
-  
+
   [ -d $HOME/.tmux ] && rm -rf $HOME/.tmux
   mkdir -p $HOME/.tmux/plugins/tpm
   git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-
 
   ## TMUX CONFIG
   [ -f $HOME/.tmux.conf ] && rm -rf $HOME/.tmux.conf
   ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 
-
 }
 
-
-
-
-
 main
-
-
-
-
-
