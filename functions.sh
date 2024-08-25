@@ -1,3 +1,9 @@
+remkdir() {
+  if [ -d $1 ]; then
+    rm -rf $1
+  fi
+  mkdir -p $1
+}
 
 link_dotfile() {
   echo "link_dotfile $1 $2 $3"
@@ -6,14 +12,13 @@ link_dotfile() {
   DEST_FILENAME=$3
   DEST_FULL=$DEST_PATH/$DEST_FILENAME
   if [[ -f $DEST_FULL ]]; then
-  #  echo "deleting $DEST_FULL"
+    #  echo "deleting $DEST_FULL"
     rm $DEST_FULL
   fi
   mkdir -p $DEST_PATH
-  ln -s $SOURCE $DEST_PATH/$DEST_FILENAME 
+  ln -s $SOURCE $DEST_PATH/$DEST_FILENAME
 
 }
-
 
 install_app() {
 
