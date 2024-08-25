@@ -1,3 +1,16 @@
+
+link_dotfile {
+  SOURCE=$1
+  DESTINATION_PATH=$2
+  DESTINATION_FILENAME=$3
+
+  [ -d $DESTINATION_PATH ] && rm -rf $DESTINATION_PATH
+  mkdir -p $DESTINATION_PATH
+  ln -s $SOURCE $DESTINATION_PATH/$DESTINATION_FILENAME 
+
+}
+
+
 install_app() {
 
   if $(is_installed $1); then

@@ -14,7 +14,7 @@ source $HOME/installers/functions.sh
 # system
 link_dotfile $DOTFILES_DIR/zsh/zshenv $HOME .zshenv
 source $HOME/.zshenv
-
+exit 1
 link_dotfile $DOTFILES_DIR/zsh/.zshrc $ZDOTDIR .zshrc
 
 # install nvim
