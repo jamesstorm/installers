@@ -1,12 +1,16 @@
 
-link_dotfile {
+link_dotfile() {
+  echo "link_dotfile $1 $2 $3"
   SOURCE=$1
-  DESTINATION_PATH=$2
-  DESTINATION_FILENAME=$3
-
-  [ -d $DESTINATION_PATH ] && rm -rf $DESTINATION_PATH
-  mkdir -p $DESTINATION_PATH
-  ln -s $SOURCE $DESTINATION_PATH/$DESTINATION_FILENAME 
+  DEST_PATH=$2
+  DEST_FILENAME=$3
+  DEST_FULL=$DEST_PATH/$DEST_FILENAME
+  if [[ -f $DEST_FULL ]]; then
+  #  echo "deleting $DEST_FULL"
+    rm $DEST_FULL
+  fi
+  mkdir -p $DEST_PATH
+  ln -s $SOURCE $DEST_PATH/$DEST_FILENAME 
 
 }
 
