@@ -1,17 +1,16 @@
 #!/bin/bash
-source /work/installers/functions.sh
+DOTFILES_DIR=$HOME/dotfiles
+INSTALLERS_DIR=$HOME/installers
+OMP_ISTALL_DIR=$HOME/.local/bin
+OMP_CONFIG_DIR=$XDG_CONFIG_HOME/ohmyposh
+
+source $INSTALLERS_DIR/functions.sh
 
 #Requirements
 # unzip
 
 DEBUG=1
 # Move these to a conf file later
-DOTFILES_DIR=/work/dotfiles
-INSTALLERS_DIR=/work/installers
-debug $DOTFILES_DIR
-debug $INSTALLERS_DIR
-OMP_ISTALL_DIR=$HOME/.local/bin
-OMP_CONFIG_DIR=$XDG_CONFIG_HOME/ohmyposh
 
 # This needs to happen first so we have our environment
 # in scenarios where this is the first run on a fres
@@ -54,6 +53,24 @@ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
 ## TMUX CONFIG
 link_dotfile $DOTFILES_DIR/.tmux.conf $HOME .tmux.conf
+
+# TOKYONIGHT
+rm -rf $/HOME/tokyonight.nvim
+cd $HOME
+git clone https://github.com/folke/tokyonight.nvim.git
+
+# bat
+# already installed above..
+#
+remkdir $HOME/.config/bat/themes
+TN_SUB_THEME=$HOME/tokyonight.nvim/extras/sublime
+BAT_THEMES=$XDG_CONFIG_HOME/bat/themes
+link_dotfile $TN_SUB_THEME/tokyonight_day.tmTheme $BAT_THEMES tokyonight_day.tmTheme
+link_dotfile $TN_SUB_THEME/tokyonight_moon.tmTheme $BAT_THEMES tokyonight_moon.tmTheme
+link_dotfile $TN_SUB_THEME/tokyonight_night.tmTheme $BAT_THEMES tokyonight_night.tmTheme
+link_dotfile $TN_SUB_THEME/tokyonight_storm.tmTheme $BAT_THEMES tokyonight_storm.tmTheme
+
+bat cache --build
 
 function main {
   if [ "$(id -u)" -eq 0 ]; then # root user uid is 0
