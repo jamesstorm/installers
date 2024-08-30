@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ !"$(id -u)" -eq 0 ]; then # root user uid is 0
+if [ "$(id -u)" -ne 0 ]; then # root user uid is 0
   echo "Please run as root"
   exit 1
 fi
@@ -32,6 +32,20 @@ pacman -S --noconfirm --needed bat
 pacman -S --noconfirm --needed openssh
 pacman -S --noconfirm --needed obsidian
 pacman -S --noconfirm --needed yay
+pacman -S --noconfirm --needed rsync
+pacman -S --noconfirm --needed libreoffice-fresh
+pacman -S --noconfirm --needed bc
+pacman -S --noconfirm --needed fio
+pacman -S --noconfirm --needed dmidecode
+pacman -S --noconfirm --needed ethtool
+yay -S --noconfirm --needed brave-browser
+pacman -S --noconfirm --needed ethtool
+
+source ./kitty.sh
+source ./arch-printing.sh
+source ./neovim-local.sh
+source ./lazy.sh
+
 # SSH - bounce it to get it going
 systemctl enable sshd.service
 systemctl restart sshd.service
