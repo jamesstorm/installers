@@ -1,18 +1,15 @@
 #!/bin/bash
 
 # Move these to a conf file later
-DOTFILES_DIR=$HOME/dots
+DOTFILES_DIR=$HOME/dotfiles
 INSTALLERS_DIR=$HOME/installers
 
 source $INSTALLERS_DIR/functions.sh
 
-#Requirements
-# unzip
-
 DEBUG=1
 
 # This needs to happen first so we have our environment
-# in scenarios where this is the first run on a fres
+# in scenarios where this is the first run on a fresh
 # system
 stow -d $DOTFILES_DIR zsh
 source $HOME/.zshenv
@@ -21,7 +18,7 @@ source $HOME/.zshenv
 stow -d $DOTFILES_DIR git
 
 # install nvim
-source $INSTALLERS_DIR/neovim-local.sh
+#source $INSTALLERS_DIR/neovim-local.sh
 
 # install lazy
 source $INSTALLERS_DIR/lazy.sh
@@ -73,6 +70,4 @@ link_dotfile $TN_SUB_THEME/tokyonight_moon.tmTheme $BAT_THEMES tokyonight_moon.t
 link_dotfile $TN_SUB_THEME/tokyonight_night.tmTheme $BAT_THEMES tokyonight_night.tmTheme
 link_dotfile $TN_SUB_THEME/tokyonight_storm.tmTheme $BAT_THEMES tokyonight_storm.tmTheme
 
-#bat cache --build
-
-export PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/var/lib/flatpak/exports/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:~/.local/bin:/opt/nvim-linux64/bin:~/.local/bin:/opt/nvim-linux64/bin
+bat cache --build
