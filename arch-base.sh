@@ -41,11 +41,6 @@ pacman -S --noconfirm --needed ethtool
 yay -S --noconfirm --needed brave-browser
 pacman -S --noconfirm --needed ethtool
 
-source ./kitty.sh
-source ./arch-printing.sh
-source ./neovim-local.sh
-source ./lazy.sh
-
 # SSH - bounce it to get it going
 systemctl enable sshd.service
 systemctl restart sshd.service
