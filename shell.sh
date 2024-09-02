@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# check some things before proceeding
+
+if [[ ! -x /usr/bin/stow ]]; then
+  echo "stow not found"
+  exit 1
+fi
+
+if [[ ! -x /usr/bin/zsh ]]; then
+  echo "zsh not found"
+  exit 1
+fi
+
 # Move these to a conf file later
 DOTFILES_DIR=$HOME/dotfiles
 INSTALLERS_DIR=$HOME/installers
@@ -18,7 +30,7 @@ source $HOME/.zshenv
 stow -d $DOTFILES_DIR git
 
 # install nvim
-#source $INSTALLERS_DIR/neovim-local.sh
+source $INSTALLERS_DIR/neovim-local.sh
 
 # install lazy
 source $INSTALLERS_DIR/lazy.sh
