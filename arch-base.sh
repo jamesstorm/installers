@@ -5,6 +5,7 @@ if [ "$(id -u)" -ne 0 ]; then # root user uid is 0
   exit 1
 fi
 pacman -Syu --noconfirm
+pacman -S --noconfirm --needed btop
 pacman -S --noconfirm --needed man
 pacman -S --noconfirm --needed nfs-utils
 pacman -S --noconfirm --needed zsh
