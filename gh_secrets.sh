@@ -12,3 +12,6 @@ ansible-vault decrypt --vault-password-file ./pwd.txt ~/.config/gh/config.yml
 ansible-vault decrypt --vault-password-file ./pwd.txt ~/.config/gh/hosts.yml
 
 rm pwd.txt
+
+# also use stow to link my .gitconfig
+stow -d $HOME/dotfiles git
