@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mount -o noatime,compress=lzo,space_cache,subvol=@root /dev/nvme0n1p3 /mnt
+mount -o noatime,compress=lzo,subvol=@root /dev/nvme0n1p3 /mnt
 mount --mkdir -o noatime,compress=lzo,subvol=@home /dev/nvme0n1p3 /mnt/home
 mount --mkdir -o noatime,compress=lzo,subvol=@srv /dev/nvme0n1p3 /mnt/srv
 mount --mkdir -o noatime,compress=lzo,subvol=@tmp /dev/nvme0n1p3 /mnt/tmp
