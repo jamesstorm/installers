@@ -3,10 +3,10 @@
 INSTALL_PARTITION=/dev/nvme0n1p3
 BOOT_PARTITION=/dev/nvme0n1p1
 
-# Connect to wifi
+# Need to be connected to wifi before this runs
 #
 
-iwctl station wlan0 connect Stormnet --passphrase "WonderMagicEquinox"
+#iwctl station wlan0 connect Stormnet --passphrase "WonderMagicEquinox"
 iwctl station wlan0 show
 
 # time and date
