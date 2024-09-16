@@ -6,7 +6,6 @@ pacstrap /mnt base \
   apple-t2-audio-config \
   apple-bcm-firmware \
   linux-firmware \
-  iwd \
   grub \
   efibootmgr \
   tiny-dfr \
@@ -36,4 +35,6 @@ pacstrap /mnt base \
   ansible \
   file \
   lsb-release \
-  ttf-meslo-nerd
+  ttf-meslo-nerd \
+  zsh \
+  dnsutils
