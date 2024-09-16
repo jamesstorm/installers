@@ -21,7 +21,7 @@ pacstrap /mnt dmidecode
 pacstrap /mnt dmraid
 pacstrap /mnt dnsmasq
 pacstrap /mnt dosfstools
-pacstrap /mnt e2fsprogs
+pacstrap /mnt e2fsprogs:e fs
 pacstrap /mnt edk2-shell
 pacstrap /mnt efibootmgr
 pacstrap /mnt espeakup

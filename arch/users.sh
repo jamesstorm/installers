@@ -1,5 +1,12 @@
 #!/bin/bash
 
-echo -e "james\njames" | passwd
-useradd -rm -d /home/james -s /bin/zsh -u 1000 -g 1000 -G sudo -p "$(openssl passwd -1 james)" james
-echo "james ALL=(ALL:ALL) ALL" >>/etc/sudoers
+USER=james
+PASSWORD=james
+ROOTPASSWORD=james
+
+#set the root user password
+echo -e "$ROOTPASSWORD\n$ROOTPASSWORD" | passwd
+
+# create a normal user and make it a sudoer
+useradd -rm -d /home/$USER -s /usr/bin/zsh -p "$(openssl passwd -1 $PASSWORD)" $USER
+echo "$USER ALL=(ALL:ALL) ALL" >>/etc/sudoers

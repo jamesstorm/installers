@@ -1,4 +1,5 @@
 #!/bin/bash
 
-sed -i 's/Modules=()/Modules=(apple-bce)/' /etc/mkinitcpio.conf
+sed -i 's/MODULES=()/MODULES=(apple-bce)/' /etc/mkinitcpio.conf
+
 mkinitcpio -P
