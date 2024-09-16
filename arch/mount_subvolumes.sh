@@ -8,4 +8,4 @@ mount --mkdir -o noatime,compress=lzo,subvol=@opt /dev/nvme0n1p3 /mnt/opt
 mount --mkdir -o noatime,compress=lzo,subvol=@.snapshots /dev/nvme0n1p3 /mnt/.snapshots
 mount --mkdir -o nodatacow,subvol=@swap /dev/nvme0n1p3 /mnt/swap
 mount --mkdir -o nodatacow,subvol=@var /dev/nvme0n1p3 /mnt/var
-mount --mkdir /dev/nvmen0n1p1 /mount/boot
+mount --mkdir /dev/nvme0n1p1 /mount/boot

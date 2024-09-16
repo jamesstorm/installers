@@ -1,6 +1,6 @@
 #!/bin/bash
 
-btrfs filesystem mkswapfile size 4g --uuid clear /swap/swapfile
+btrfs filesystem mkswapfile --size 4g --uuid clear /swap/swapfile
 swapon /swap/swapfile
 
 echo "" >>/etc/fstab

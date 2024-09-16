@@ -1,0 +1,1 @@
+echo "march" >>/etc/hostname
