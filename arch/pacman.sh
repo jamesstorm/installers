@@ -11,7 +11,7 @@ pacman -S alsa-utils arch-install-scripts archinstall bind bolt brltty btrfs-pro
   openconnect openssh openvpn partclone parted partimage pcsclite ppp pptpclient pv \
   python-requests qemu-guest-agent refind reflector reiserfsprogs rp-pppoe rsync \
   rxvt-unicode-terminfo screen sdparm sg3_utils smartmontools sof-firmware squashfs-tools \
-  sudo syslinux systemd-resolvconf t2strap tcpdump terminus-font testdisk tmux tpm2-tss \
+  sudo syslinux systemd-resolvconf tcpdump terminus-font testdisk tmux tpm2-tss \
   udftools usb_modeswitch usbmuxd usbutils vim virtualbox-guest-utils-nox vpnc \
   wireless-regdb wireless_tools wpa_supplicant wvdial xfsprogs xl2tpd zsh neovim \
   stow unzip openssh git
