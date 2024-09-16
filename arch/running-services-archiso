@@ -1,0 +1,26 @@
+  UNIT                        LOAD   ACTIVE SUB     DESCRIPTION
+  bolt.service                loaded active running Thunderbolt system service
+  dbus-broker.service         loaded active running D-Bus System Message Bus
+  getty@tty1.service          loaded active running Getty on tty1
+  iwd.service                 loaded active running Wireless service
+  ModemManager.service        loaded active running Modem Manager
+  polkit.service              loaded active running Authorization Manager
+  sshd.service                loaded active running OpenSSH Daemon
+  systemd-homed.service       loaded active running Home Area Manager
+  systemd-journald.service    loaded active running Journal Service
+  systemd-logind.service      loaded active running User Login Management
+  systemd-networkd.service    loaded active running Network Configuration
+  systemd-nsresourced.service loaded active running Namespace Resource Manager
+  systemd-resolved.service    loaded active running Network Name Resolution
+  systemd-timesyncd.service   loaded active running Network Time Synchronization
+  systemd-udevd.service       loaded active running Rule-based Manager for Device Events and Files
+  systemd-userdbd.service     loaded active running User Database Manager
+  t2fanrd.service             loaded active running A simple daemon to control fan speed on Macs with T2 chip, now written in Rust!
+  tiny-dfr.service            loaded active running Tiny Apple silicon touch bar daemon
+  user@0.service              loaded active running User Manager for UID 0
+
+Legend: LOAD   → Reflects whether the unit definition was properly loaded.
+        ACTIVE → The high-level unit activation state, i.e. generalization of SUB.
+        SUB    → The low-level unit activation state, values depend on unit type.
+
+19 loaded units listed.
