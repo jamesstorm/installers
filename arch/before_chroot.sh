@@ -13,7 +13,7 @@ iwctl station wlan0 show
 timdatectl set-ntp true
 
 # set pacman mirrorlist
-pacman -Sy reflector
+pacman -Sy --noconfirm reflector
 reflector -c Canada -a 6 --sort rate --save /etc/pacman.d/mirrorlist
 
 # partition
@@ -61,7 +61,6 @@ mount --mkdir $BOOT_PARTITION /mnt/boot
 pacstrap /mnt base linux-t2 linux-t2-headers apple-t2-audio-config apple-bcm-firmware linux-firmware iwd grub efibootmgr tiny-dfr t2fanrd
 
 #my additions
-pacstrap /mnt neovim stow git openssh
 
 # generate the fstab
 genfstab -U /mnt >>/mnt/etc/fstab
