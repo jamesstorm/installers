@@ -1,12 +1,5 @@
 #/bin/bash
 
-# partition
-echo "#####"
-echo "Partitioning $INSTALL_PARTITION"
-echo "select n, defaults."
-echo "select w, Y to write the changes"
-gdisk $INSTALL_PARTITION
-
 # formatting
 echo "Formatting $INSTALL_PARTITION"
 mkfs.btrfs -f -L Arch $INSTALL_PARTITION
@@ -27,7 +20,7 @@ btrfs subvolume create /mnt/@.snapshots
 umount /mnt/boot
 umount /mnt
 
-mount -o noatime,compress=lzo,space_cache,subvol=@root $INSTALL_PARTITION /mnt
+mount -o noatime,compress=lzo,subvol=@root $INSTALL_PARTITION /mnt
 mount --mkdir -o noatime,compress=lzo,subvol=@home $INSTALL_PARTITION /mnt/home
 mount --mkdir -o noatime,compress=lzo,subvol=@srv $INSTALL_PARTITION /mnt/srv
 mount --mkdir -o noatime,compress=lzo,subvol=@tmp $INSTALL_PARTITION /mnt/tmp
