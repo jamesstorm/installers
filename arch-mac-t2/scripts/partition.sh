@@ -1,5 +1,4 @@
 #!/bin/bash
-source ../config.sh
 echo "#####"
 echo "Partitioning $INSTALL_PARTITION"
 echo "select n, defaults."

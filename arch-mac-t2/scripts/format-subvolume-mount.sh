@@ -1,6 +1,5 @@
 #/bin/bash
 
-source ../config.sh
 # partition
 echo "#####"
 echo "Partitioning $INSTALL_PARTITION"
