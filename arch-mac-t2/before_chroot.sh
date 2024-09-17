@@ -1,9 +1,10 @@
 #/bin/bash
 
-source ./config.sh
+#test for internet. Script will exit if no internet.
+source ./scripts/internet-test.sh
 
-# Need to be connected to wifi before this runs
-iwctl station wlan0 show
+# load some configuration
+source ./config.sh
 
 # time and date
 source ./scripts/timedate.sh
