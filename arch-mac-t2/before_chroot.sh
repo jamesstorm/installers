@@ -10,7 +10,7 @@ source ./config.sh
 source ./scripts/timedate.sh
 
 # set pacman mirrorlist
-source .scripts/reflector.sh
+source ./scripts/reflector.sh
 
 # partition
 source ./scripts/partition.sh
