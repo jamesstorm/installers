@@ -1,21 +1,6 @@
 #/bin/bash
 
 source ../config.sh
-
-<<<<<<< HEAD:arch-mac-t2/scripts/format-subvolume-mount.sh
-=======
-# Need to be connected to wifi before this runs
-#
-
-iwctl station wlan0 show
-
-# time and date
-timdatectl set-ntp true
-
-# set pacman mirrorlist
-pacman -Sy --noconfirm reflector
-reflector -c Canada -a 6 --sort rate --save /etc/pacman.d/mirrorlist
-
 # partition
 echo "#####"
 echo "Partitioning $INSTALL_PARTITION"
@@ -24,7 +9,6 @@ echo "select w, Y to write the changes"
 gdisk $INSTALL_PARTITION
 
 # formatting
->>>>>>> 42dabab6916ff8f4db569827c1664370d885827a:arch/before_chroot.sh
 echo "Formatting $INSTALL_PARTITION"
 mkfs.btrfs -f -L Arch $INSTALL_PARTITION
 
