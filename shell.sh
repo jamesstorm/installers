@@ -2,12 +2,12 @@
 
 # check some things before proceeding
 
-if [[ ! -x /usr/bin/stow ]]; then
+if [[ ! -x /usr/bin/stow ]] | [[ ! -x /usr/local/bin/stow ]] ; then
 	echo "stow not found"
 	exit 1
 fi
 
-if [[ ! -x /usr/bin/zsh ]]; then
+if [[ ! -x /usr/bin/zsh ]] | [[ ! -x /bin/zsh ]]; then
 	echo "zsh not found"
 	exit 1
 fi
@@ -29,6 +29,9 @@ source $HOME/.zshenv
 # git config
 stow -d $DOTFILES_DIR git
 
+# nvim/lazy config
+stow -d $DOTFILES_DIR nvim
+
 # install nvim
 source $INSTALLERS_DIR/neovim-local.sh
 
@@ -38,8 +41,6 @@ source $INSTALLERS_DIR/lazy.sh
 # Kitty configuration
 stow -d $DOTFILES_DIR kitty
 
-# nvim/lazy config
-stow -d $DOTFILES_DIR nvim
 
 ## OHMYPOSH INSTALL
 source $INSTALLERS_DIR/ohmyposh.sh
