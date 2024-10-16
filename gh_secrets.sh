@@ -6,7 +6,7 @@ echo "${VAULTPWD}" >>pwd.txt
 # remove existing gh config
 rm -rf ~/.config/gh
 
-cp -R ./secrets/gh ~/.config/
+cp -R $HOME/installers/secrets/gh ~/.config/
 
 ansible-vault decrypt --vault-password-file ./pwd.txt ~/.config/gh/config.yml
 ansible-vault decrypt --vault-password-file ./pwd.txt ~/.config/gh/hosts.yml
