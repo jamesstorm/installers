@@ -2,12 +2,12 @@
 
 # check some things before proceeding
 
-if [[ ! -x /usr/bin/stow ]] | [[ ! -x /usr/local/bin/stow ]] ; then
+if [ ! -x /usr/bin/stow ] ; then
 	echo "stow not found"
 	exit 1
 fi
 
-if [[ ! -x /usr/bin/zsh ]] | [[ ! -x /bin/zsh ]]; then
+if [[ ! -x /usr/bin/zsh ]] || [[ ! -x /bin/zsh ]]; then
 	echo "zsh not found"
 	exit 1
 fi
