@@ -8,10 +8,19 @@
 #
 #
 # install the things
-# git, gh
-# docker, docker-compose
+apt install stow ansible curl build-essential -y
 
-source ./gh.sh
+source ./gh-debian.sh
+
+cd ~
+
+git clone https://github.com/jamesstorm/installers
+source ./installers/dotfiles.sh
+
+cd ~/dotfiles
+stow git
+cd ../installers
+source ./gh_secrets.sh
 
 # get git secrets
 #
