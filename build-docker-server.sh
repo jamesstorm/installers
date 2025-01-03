@@ -17,6 +17,11 @@ git clone https://github.com/jamesstorm/installers
 ./installers/gh-debian.sh
 ./installers/dotfiles.sh
 
+cd ~/installers
+
+./neovim-tar.sh
+./lazy.sh
+
 mkdir -p ~/.config
 
 stow -d ~/dotfiles git
@@ -26,9 +31,7 @@ stow -d ~/dotfiles nvim
 cd ~/installers
 
 ./gh_secrets.sh
-./neovim-tar.sh
-./lazy.sh
-
+source ~/.profile
 # get git secrets
 #
 #
