@@ -2,7 +2,7 @@
 
 # check some things before proceeding
 
-if [ ! -x /usr/bin/stow ] ; then
+if [ ! -x /usr/bin/stow ]; then
 	echo "stow not found"
 	exit 1
 fi
@@ -20,6 +20,10 @@ source $INSTALLERS_DIR/functions.sh
 
 DEBUG=1
 
+sudo pacman -S unzip git stow neovim python python-pip ansible
+source $INSTALLERS_DIR/yay.sh
+yay -S github-cli
+
 # This needs to happen first so we have our environment
 # in scenarios where this is the first run on a fresh
 # system
@@ -27,20 +31,19 @@ stow -d $DOTFILES_DIR zsh
 source $HOME/.zshenv
 
 # git config
+rm $HOME/.config/nvim/lua/config/keymaps.lua
 stow -d $DOTFILES_DIR git
 
 # nvim/lazy config
 stow -d $DOTFILES_DIR nvim
 
 # install nvim
-source $INSTALLERS_DIR/neovim-local.sh
 
 # install lazy
 source $INSTALLERS_DIR/lazy.sh
 
 # Kitty configuration
 stow -d $DOTFILES_DIR kitty
-
 
 ## OHMYPOSH INSTALL
 source $INSTALLERS_DIR/ohmyposh.sh
