@@ -3,13 +3,13 @@
 # check some things before proceeding
 
 if [ ! -x /usr/bin/stow ]; then
-	echo "stow not found"
-	exit 1
+  echo "stow not found"
+  exit 1
 fi
 
 if [[ ! -x /usr/bin/zsh ]] || [[ ! -x /bin/zsh ]]; then
-	echo "zsh not found"
-	exit 1
+  echo "zsh not found"
+  exit 1
 fi
 
 # Move these to a conf file later
@@ -20,7 +20,7 @@ source $INSTALLERS_DIR/functions.sh
 
 DEBUG=1
 
-sudo pacman -S unzip git stow neovim python python-pip ansible
+sudo pacman -S unzip git stow neovim python python-pip ansible tmux
 source $INSTALLERS_DIR/yay.sh
 yay -S github-cli
 

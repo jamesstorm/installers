@@ -65,6 +65,8 @@ echo "===== nvchad"
 rm -rf /home/${user}/.config/nvim
 git clone https://github.com/NvChad/starter /home/${user}/.config/nvim 
 
+rm -rf /home/${user}/.tmux
+git clone https://github.com/tmux-plugins/tpm /home/$user/.tmux/plugins/tpm
 # TOKYONIGHT
 git clone https://github.com/folke/tokyonight.nvim.git
 
@@ -137,6 +139,8 @@ function fstab_add_entry() {
 } 
 sudo mkdir -p /mnt/homeshare /mnt/media
 fstab_add_entry "192.168.6.201:/mnt/Foo/homeshare /mnt/homeshare nfs defaults 0 0"
+rm -rf /home/${user}/.tmux
+git clone https://github.com/tmux-plugins/tpm /home/$user/.tmux/plugins/tpm
 fstab_add_entry "192.168.6.201:/mnt/mr_pool/media /mnt/media nfs defaults 0 0"
 
 sudo systemctl daemon-reload
