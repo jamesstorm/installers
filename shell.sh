@@ -19,10 +19,16 @@ INSTALLERS_DIR=$HOME/installers
 source $INSTALLERS_DIR/functions.sh
 
 DEBUG=1
-
-sudo pacman -S unzip git stow neovim python python-pip ansible tmux
+install_app unzip
+install_app git
+install_app stow
+install_app python
+install_app python-pip
+install_app ansible
+install_app tmux
+source $INSTALLERS_DIR/neovim.sh
 source $INSTALLERS_DIR/yay.sh
-yay -S github-cli
+source $INSTALLERS_DIR/gh.sh
 
 # This needs to happen first so we have our environment
 # in scenarios where this is the first run on a fresh

@@ -1,9 +1,11 @@
 #!/bin/bash
-echo "Downloading nvim..."
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
 
-sudo rm /usr/bin/nvim
-sudo cp nvim.appimage /usr/bin/nvim
-sudo chmod +x /usr/bin/nvim
-rm nvim.appimage
+INSTALL_DIR="/usr/local/bin"
+
+if [ -x /usr/bin/pacman ]; then
+  sudo pacman -S $1
+elif [[ -x /usr/bin/apt ]]; then
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  sudo tar -C $INSTALL_DIR -xzf nvim-linux-x86_64.tar.gz
+  rm -rf nvim-linux-x86_64.tar.gz
+fi
