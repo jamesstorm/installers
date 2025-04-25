@@ -1,5 +1,10 @@
 #/bin/bash -e
 
+if [ ! -x /usr/bin/stow ] || [ ! -x /usr/bin/git ] || [ ! -x /usr/bin/gh ] || [ ! -x /usr/bin/ansible-vault ]; then
+  echo "one of stow, git, gh, or ansible not found"
+  exit 1
+fi
+
 
 
 FSTAB_LINE="192.168.4.201:/mnt/media/rpicam1 /rpicam1 nfs defaults 0 0"
@@ -16,14 +21,8 @@ if [ $(id -u) -ne 0 ]; then
 fi
 
 # update the things
-apt update
-apt upgrade
 
-apt install git ansible
-apt install stow
 
-sudo -u james git clone https://github.com/jamesstorm/installers
-sudo -u james /home/james/installers/dotfiles.sh
 
 # mount share from truenas
 mkdir -p /rpicam1
