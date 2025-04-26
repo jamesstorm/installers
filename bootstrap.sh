@@ -17,6 +17,7 @@ get_real_user
 get_os
 
 echo "Hello, $REAL_USER"
+echo "Home dir: $HOME_DIR"
 echo "Detected OS: $OS_NAME"
 
 if [ "$OS_NAME" = "debian" ]; then
