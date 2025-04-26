@@ -42,29 +42,43 @@ systemctl daemon-reload
 mount -a
 
 
+sudo apt install python3-pip
+sudo pip3 install 'https://github.com/motioneye-project/motioneye/archive/dev.tar.gz' --break-system-packages
+sudo motioneye_init
 
-# set up virtual environments:
-rm -rf /home/james/motioneye/*
-python -m venv /home/james/motioneye
-
-
-
-
-apt install -y python3-pip
-
-apt install -y ffmpeg v4l-utils curl wget libmariadb3 libpq5 libmicrohttpd12
-mkdir -p /var/log/motion
-chown -R motion:motion /var/log/motion
-apt install -y motion
-sed -i 's/daemon off/daemon on/' /etc/motion/motion.conf
-apt install -y libssl-dev libcurl4-openssl-dev libjpeg-dev libz-dev
-/home/james/motioneye/bin/pip3 install motioneye
-mkdir -p /etc/motioneye
-cp /home/james/motioneye/share/motioneye/extra/motioneye.conf.sample /etc/motioneye/motioneye.conf
-cp /home/james/motioneye/share/motioneye/extra/motioneye.systemd-unit-local /etc/systemd/system/motioneye.service
-systemctl daemon-reexec
 systemctl enable motioneye
 systemctl start motioneye
+systemctl status
+
+
+apt install v4l2loopback-dkms
+echo "v4l2loopback" >> /etc/modules
+echo 'options v4l2loopback devices=1 video_nr=0 card_label="rpicam1" exclusive_caps=1' >> /etc/modprobe.d/v4l2loopback.conf
+apt install ffmpeg
+echo <<EOT > /usr/local/bin/camera-stream.sh
+#!/bin/bash
+libcamera-vid -t 0 --inline --width 640 --height 480 --framerate 25 --codec mjpeg | ffmpeg -i - -f v4l2 -vcodec rawvideo -pix_fmt yuv420p /dev/video0
+EOT
+chmod +x /usr/local/bin/camera-stream.sh
+echo <<EOT > /etc/systemd/system/camera-stream.service
+[Unit]
+Description=Pipe libcamera feed to v4l2loopback
+After=multi-user.target
+
+[Service]
+ExecStart=/usr/local/bin/camera-stream.sh
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+EOT
+
+
+systemctl daemon-reload
+systemctl enable camera-stream.service
+systemctl start camera-stream.service
+
 
 
 
