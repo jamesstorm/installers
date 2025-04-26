@@ -1,3 +1,30 @@
+
+
+
+get_os() {
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        case "$ID" in
+            ubuntu) OS_NAME="ubuntu" ;;
+            debian) OS_NAME="debian" ;;
+            arch) OS_NAME="arch" ;;
+            manjaro) OS_NAME="manjaro" ;;
+            fedora) OS_NAME="fedora" ;;
+            centos) OS_NAME="centos" ;;
+            rocky) OS_NAME="rocky" ;;
+            alma) OS_NAME="alma" ;;
+            opensuse*|suse) OS_NAME="opensuse" ;;
+            raspbian) OS_NAME="raspbian" ;;
+            *) OS_NAME="$ID" ;;
+        esac
+    elif [ "$(uname)" = "Darwin" ]; then
+        OS_NAME="macos"
+    else
+        OS_NAME="unknown"
+    fi
+}
+
+
 remkdir() {
   if [ -d $1 ]; then
     rm -rf $1

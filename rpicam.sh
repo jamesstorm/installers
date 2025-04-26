@@ -40,3 +40,33 @@ fi
 systemctl daemon-reload
 
 mount -a
+
+
+
+# set up virtual environments:
+rm -rf /home/james/motioneye/*
+python -m venv /home/james/motioneye
+
+
+
+
+apt install -y python3-pip
+
+apt install -y ffmpeg v4l-utils curl wget libmariadb3 libpq5 libmicrohttpd12
+mkdir -p /var/log/motion
+chown -R motion:motion /var/log/motion
+apt install -y motion
+sed -i 's/daemon off/daemon on/' /etc/motion/motion.conf
+apt install -y libssl-dev libcurl4-openssl-dev libjpeg-dev libz-dev
+/home/james/motioneye/bin/pip3 install motioneye
+mkdir -p /etc/motioneye
+cp /home/james/motioneye/share/motioneye/extra/motioneye.conf.sample /etc/motioneye/motioneye.conf
+cp /home/james/motioneye/share/motioneye/extra/motioneye.systemd-unit-local /etc/systemd/system/motioneye.service
+systemctl daemon-reexec
+systemctl enable motioneye
+systemctl start motioneye
+
+
+
+
+
