@@ -1,4 +1,14 @@
-
+get_real_user() {
+    if [ "$(id -u)" -eq 0 ]; then
+        if [ -n "$SUDO_USER" ]; then
+            REAL_USER="$SUDO_USER"
+        else
+            REAL_USER="root"
+        fi
+    else
+        REAL_USER="$(whoami)"
+    fi
+}
 
 
 get_os() {
