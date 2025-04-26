@@ -28,5 +28,5 @@ elif [ "$OS_NAME" = "arch" ]; then
 	exit 1
 fi
 
-sudo -u $REAL_USER git clone https://github.com/jamesstorm/installers $HOME_DIR
-sudo -u $REAL_USER git clone https://github.com/jamesstorm/dotfiles $HOME_DIR
+sudo -u $REAL_USER git clone https://github.com/jamesstorm/installers $HOME_DIR/installers
+sudo -u $REAL_USER git clone https://github.com/jamesstorm/dotfiles $HOME_DIR/dotfiles
