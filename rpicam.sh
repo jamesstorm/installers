@@ -1,5 +1,5 @@
 #/bin/bash -e
-
+#
 if [ ! -x /usr/bin/stow ] || [ ! -x /usr/bin/git ] || [ ! -x /usr/bin/gh ] || [ ! -x /usr/bin/ansible-vault ]; then
   echo "one of stow, git, gh, or ansible not found"
   exit 1
