@@ -7,10 +7,10 @@ if [ ! -x /usr/bin/stow ]; then
   exit 1
 fi
 
-if [[ ! -x /usr/bin/zsh ]] || [[ ! -x /bin/zsh ]]; then
-  echo "zsh not found"
-  exit 1
-fi
+#if [[ ! -x /usr/bin/zsh ]] || [[ ! -x /bin/zsh ]]; then
+#  echo "zsh not found"
+#  exit 1
+#fi
 
 # Move these to a conf file later
 DOTFILES_DIR=$HOME/dotfiles
@@ -19,9 +19,9 @@ INSTALLERS_DIR=$HOME/installers
 source $INSTALLERS_DIR/functions.sh
 
 DEBUG=1
+install_app zsh
 install_app unzip
 install_app git
-install_app stow
 install_app python
 install_app python-pip
 install_app ansible
