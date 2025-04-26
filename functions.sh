@@ -1,3 +1,14 @@
+
+
+get_home_dir() {
+    if [ "$REAL_USER" = "root" ]; then
+        HOME_DIR="/root"
+    else
+        HOME_DIR=$(getent passwd "$REAL_USER" | cut -d: -f6)
+    fi
+}
+
+
 get_real_user() {
     if [ "$(id -u)" -eq 0 ]; then
         if [ -n "$SUDO_USER" ]; then
@@ -8,7 +19,11 @@ get_real_user() {
     else
         REAL_USER="$(whoami)"
     fi
+    get_home_dir
 }
+
+
+
 
 
 get_os() {
