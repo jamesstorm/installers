@@ -12,8 +12,7 @@ fi
 #  exit 1
 #fi
 
-
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"   
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 # Move these to a conf file later
 DOTFILES_DIR=$HOME/dotfiles
@@ -26,7 +25,7 @@ install_app zsh
 install_app unzip
 install_app git
 install_app python3
-install_app python-pip3
+install_app python3-pip
 install_app ansible
 install_app tmux
 install_app bat
@@ -55,7 +54,6 @@ stow -d $DOTFILES_DIR ohmyposh
 ## OHMYPOSH INSTALL
 source $INSTALLERS_DIR/ohmyposh.sh
 
-
 ## ZSH_AUTOSUGGESTIONS
 VAR=$XDG_CONFIG_HOME/.zsh-plugins/zsh-autosuggestions
 remkdir $VAR
@@ -76,22 +74,10 @@ git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 #link_dotfile $DOTFILES_DIR/.tmux.conf $HOME .tmux.conf
 stow -d $DOTFILES_DIR tmux
 
-# TOKYONIGHT
-rm -rf $/HOME/tokyonight.nvim
-cd $HOME
-git clone https://github.com/folke/tokyonight.nvim.git
-
-# bat
-# already installed above..
-#
-stow -d $DOTFILES_DIR bat
-
-#remkdir $HOME/.config/bat/themes
-TN_SUB_THEME=$HOME/tokyonight.nvim/extras/sublime
-BAT_THEMES=$XDG_CONFIG_HOME/bat/themes
-link_dotfile $TN_SUB_THEME/tokyonight_day.tmTheme $BAT_THEMES tokyonight_day.tmTheme
-link_dotfile $TN_SUB_THEME/tokyonight_moon.tmTheme $BAT_THEMES tokyonight_moon.tmTheme
-link_dotfile $TN_SUB_THEME/tokyonight_night.tmTheme $BAT_THEMES tokyonight_night.tmTheme
-link_dotfile $TN_SUB_THEME/tokyonight_storm.tmTheme $BAT_THEMES tokyonight_storm.tmTheme
-
-bat cache --build
+BAT_CMD=bat
+if [ ! -x /usr/bin/bat ]; then
+  echo "bat not found"
+  BAT_CMD=batcat
+fi
+$(BAT_CMD) cache --build
+echo "alias bat=batcat" >>$DOTFILES/zsh/.config/zsh/aliases.zsh
