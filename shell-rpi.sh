@@ -12,8 +12,7 @@ fi
 #  exit 1
 #fi
 
-
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"   
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 
 # Move these to a conf file later
 DOTFILES_DIR=$HOME/dotfiles
@@ -26,7 +25,7 @@ install_app zsh
 install_app unzip
 install_app git
 install_app python3
-install_app python-pip3
+install_app python3-pip
 install_app ansible
 install_app tmux
 install_app bat
@@ -54,7 +53,6 @@ stow -d $DOTFILES_DIR ohmyposh
 
 ## OHMYPOSH INSTALL
 source $INSTALLERS_DIR/ohmyposh.sh
-
 
 ## ZSH_AUTOSUGGESTIONS
 VAR=$XDG_CONFIG_HOME/.zsh-plugins/zsh-autosuggestions
