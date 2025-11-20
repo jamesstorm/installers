@@ -75,9 +75,9 @@ link_dotfile() {
 install_app() {
 
   if $(is_installed $1); then
-    echo "$1 is already installed"
+    echo "install_app: $1 is already installed"
   else
-    echo "install_app installing $1"
+    echo "install_app: installing $1"
     if [ -x /usr/bin/pacman ]; then
       sudo pacman -S $1
     elif [[ -x /usr/bin/apt ]]; then
@@ -96,5 +96,5 @@ is_installed() {
 }
 
 function debug {
-  [ $DEBUG -eq -0 ] && echo $1
+  [ $DEBUG -eq -0 ] && printf "======\n%s\n======\n" "$1" 
 }
