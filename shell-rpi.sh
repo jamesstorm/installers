@@ -23,7 +23,6 @@ source $INSTALLERS_DIR/functions.sh
 DEBUG=1
 install_app zsh
 install_app unzip
-install_app git
 install_app python3
 install_app python3-pip
 install_app ansible
@@ -43,10 +42,10 @@ rm $HOME/.config/nvim/lua/config/keymaps.lua
 stow -d $DOTFILES_DIR git
 
 # nvim/lazy config
-stow -d $DOTFILES_DIR nvim
+#stow -d $DOTFILES_DIR nvim
 
 # install lazy
-source $INSTALLERS_DIR/lazy.sh
+#source $INSTALLERS_DIR/lazy.sh
 
 ## OMYMPOSH  CONFIG
 stow -d $DOTFILES_DIR ohmyposh
