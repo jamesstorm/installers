@@ -25,7 +25,7 @@ if [ "$OS_NAME" = "debian" ]; then
 	apt upgrade -y 
 	apt install -y git gh stow ansible
 elif [ "$OS_NAME" = "arch" ]; then
-	pacman -Syu git stow ansible
+	pacman -Syu git stow ansible: --noconfirm
 	#echo "pacman calls not implemented... yet"
 	#exit 1
 fi
