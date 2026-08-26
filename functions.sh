@@ -1,54 +1,46 @@
-
-
 get_home_dir() {
-    if [ "$REAL_USER" = "root" ]; then
-        HOME_DIR="/root"
-    else
-        HOME_DIR=$(getent passwd "$REAL_USER" | cut -d: -f6)
-    fi
+  if [ "$REAL_USER" = "root" ]; then
+    HOME_DIR="/root"
+  else
+    HOME_DIR=$(getent passwd "$REAL_USER" | cut -d: -f6)
+  fi
 }
-
 
 get_real_user() {
-    if [ "$(id -u)" -eq 0 ]; then
-        if [ -n "$SUDO_USER" ]; then
-            REAL_USER="$SUDO_USER"
-        else
-            REAL_USER="root"
-        fi
+  if [ "$(id -u)" -eq 0 ]; then
+    if [ -n "$SUDO_USER" ]; then
+      REAL_USER="$SUDO_USER"
     else
-        REAL_USER="$(whoami)"
+      REAL_USER="root"
     fi
-    get_home_dir
+  else
+    REAL_USER="$(whoami)"
+  fi
+  get_home_dir
 }
-
-
-
-
 
 get_os() {
-    if [ -f /etc/os-release ]; then
-        . /etc/os-release
-        case "$ID" in
-            ubuntu) OS_NAME="ubuntu" ;;
-            debian) OS_NAME="debian" ;;
-            arch) OS_NAME="arch" ;;
-            manjaro) OS_NAME="manjaro" ;;
-            fedora) OS_NAME="fedora" ;;
-            centos) OS_NAME="centos" ;;
-            rocky) OS_NAME="rocky" ;;
-            alma) OS_NAME="alma" ;;
-            opensuse*|suse) OS_NAME="opensuse" ;;
-            raspbian) OS_NAME="raspbian" ;;
-            *) OS_NAME="$ID" ;;
-        esac
-    elif [ "$(uname)" = "Darwin" ]; then
-        OS_NAME="macos"
-    else
-        OS_NAME="unknown"
-    fi
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    case "$ID" in
+    ubuntu) OS_NAME="ubuntu" ;;
+    debian) OS_NAME="debian" ;;
+    arch) OS_NAME="arch" ;;
+    manjaro) OS_NAME="manjaro" ;;
+    fedora) OS_NAME="fedora" ;;
+    centos) OS_NAME="centos" ;;
+    rocky) OS_NAME="rocky" ;;
+    alma) OS_NAME="alma" ;;
+    opensuse* | suse) OS_NAME="opensuse" ;;
+    raspbian) OS_NAME="raspbian" ;;
+    *) OS_NAME="$ID" ;;
+    esac
+  elif [ "$(uname)" = "Darwin" ]; then
+    OS_NAME="macos"
+  else
+    OS_NAME="unknown"
+  fi
 }
-
 
 remkdir() {
   if [ -d $1 ]; then
@@ -78,10 +70,14 @@ install_app() {
     echo "install_app: $1 is already installed"
   else
     echo "install_app: installing $1"
-    if [ -x /usr/bin/pacman ]; then
-      sudo pacman -S $1
-    elif [[ -x /usr/bin/apt ]]; then
-      sudo apt install $1 -y
+    if [ $OS_NAME = "Darwin"]; then
+      brew install $1 -y
+    else
+      if [ -x /usr/bin/pacman ]; then
+        sudo pacman -S $1
+      elif [[ -x /usr/bin/apt ]]; then
+        sudo apt install $1 -y
+      fi
     fi
   fi
 
@@ -96,5 +92,5 @@ is_installed() {
 }
 
 function debug {
-  [ $DEBUG -eq -0 ] && printf "======\n%s\n======\n" "$1" 
+  [ $DEBUG -eq -0 ] && printf "======\n%s\n======\n" "$1"
 }
