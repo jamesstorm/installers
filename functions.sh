@@ -70,7 +70,7 @@ install_app() {
     echo "install_app: $1 is already installed"
   else
     echo "install_app: installing $1"
-    if [ $OS_NAME = "Darwin"]; then
+    if [ "$OS_NAME" = "macos" ]; then
       brew install $1 -y
     else
       if [ -x /usr/bin/pacman ]; then
